@@ -1,0 +1,1 @@
+ These CSV files are based on the Singularized XML file of the updated XML. This did not include several poems as of the first push.

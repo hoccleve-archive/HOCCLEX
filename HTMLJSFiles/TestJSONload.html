@@ -1,0 +1,32 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!--Load Jquery-->
+
+</head>
+<body>
+<p>Testing</p>
+<br><br>
+<p id="testing"></p>
+
+
+<script>
+
+
+    //var text = '{"name":"John Johnson","street":"Oslo West 16","phone":"555 1234567"}';
+
+    var obj = $.getJSON("JSON/test.json", function(json) {
+        console.log(json); // this will show the info it in firebug console
+    });
+
+    document.getElementById("testing").innerHTML =
+            obj.name + "<br>" +
+            obj.street + "<br>" +
+            obj.phone;
+</script>
+
+<!--<script>-->
+    <!--var object = $.getJSON('JSON/test.json');-->
+
+    <!--document.getElementById("testing").innerHTML =-->
+            <!--object.name;-->
+<!--</script>-->
+</body>

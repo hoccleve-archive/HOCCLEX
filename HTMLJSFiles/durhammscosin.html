@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Manuscript page</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/loadxmldoc.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="css/app.css">
+
+    <style>
+        input{
+            width: 400px;
+        }
+    </style>
+    <script>
+        var filename="";
+        $(document).ready(function(){
+            $(".poems").click(function (){
+                filename=$(this).attr('id');  // For fetching the 'id' value of the button clicked using class name
+                var poem_name=$(this).val(); // For gettting the value of the button clicked
+                // Right here is where the new html is written
+                document.write("<head>");
+                document.write("<link rel='stylesheet' href='css/foundation.css'>");
+                document.write("<link rel='stylesheet' href='css/foundation.min.css'>");
+                document.write("<link rel='stylesheet' href='css/app.css'>");
+                document.write("<link rel='stylesheet' href='css/contextMenu.css'>");
+
+                document.write('<script src="js/SearchJSON.js"><\/script>');
+                document.write('<script src="js/selectText.js"><\/script>');
+
+                // <add our javascript FILE that overrwrites the mouse right click, and trigger the menu for searching>
+
+                document.write("</head>");
+                document.write("<body onload='contextmenu()'>");
+                document.write("<a class='button' href='index.html'>Home</a> &nbsp<a class='button' href='ms.html'>Manuscript </a>&nbsp<a a class='button' href='durhammscosin.html'>Durham MS Cosin</a>");
+                //document.write('<a class="button" href="#" data-open="resultReveal">Testing</a>');
+                document.write("<center><h1><b>"+poem_name+"</b></h1></center>"); // Displays name of the poem
+                //document.write("<br><br>");
+                //document.write('<a href="#" data-open="myModal">Click Me For A Modal</a>');
+                xmlDoc=loadXMLDoc(filename); // call to loadXMLDoc() for fetching the contents of XML file
+                // Start the context menu code as well as the
+                //document.write("<p>testing</p>");
+
+                // Adding the contextMenu content
+                document.write("<ul class='custom-menu'>");
+                document.write("<li data-open='resultReveal' data-action = 'first'>Search Current Poem</li>");
+                document.write("<li data-open='resultReveal' data-action = 'second'>Search All Poems</li>");
+                document.write("</ul>");
+
+                // Add the context script
+                document.write("<script src='js/contextMenu.js'><\/script>");
+
+                //Following code goes through the DOM tree recursively  and displays the poem
+                // Loading the poem selected
+                var poem_tags = xmlDoc.getElementsByTagName("poem")[0].childNodes; //fetches all the "poem" tags
+                var m=(poem_tags.length-1)/2; /*possibly for formatting the tables?*/
+                var s=0;
+                var line_count=1;
+
+                for (var line_group_index = 0; line_group_index < m-1; line_group_index++) // I added the -1 so the loop would complete allowing me to properly add the reveal section
+
+                {
+                    document.write("<table style='width:1000px;'>");
+                    var lg_tags= xmlDoc.getElementsByTagName("lg")[line_group_index].childNodes; // fetches all the "lg" tags
+                    n=(lg_tags.length-1)/2;
+                    for (j=0;j<n;j++)
+                    {
+                        document.write("<tr>");
+                        if(line_count==1)
+                        {
+                            document.write("<td style='width:70px;'>"+1+"</td>");
+                        }
+                        else if(line_count%5==0)
+                        {
+                            document.write("<td style='width:70px;'>"+line_count+"</td>");
+                        }
+                        else
+                        {
+                            document.write("<td></td>");
+                        }
+                        line_count++;
+                        x=xmlDoc.getElementsByTagName("l")[s].childNodes; // fetches "l" tags
+                        y=xmlDoc.getElementsByTagName("l")[s].firstChild;
+                        s++;
+                        document.write("<td>");
+                        for(i=0;i<x.length;i++)
+                        {
+                            if (y.nodeType==1)
+                            {
+                                document.write("<span oncontextmenu='selectText(this)'>"+y.childNodes[0].nodeValue+" "+"</span>");
+                            }
+                            y=y.nextSibling;
+                        }
+                        document.write("</td></tr>");
+                    }
+                    //document.write("<br/>");
+                    document.write("</table>");
+                    document.write("<br/>");
+
+                }
+                document.write('<div id="resultReveal" class="reveal" data-reveal>');
+
+//				Loading Bar
+                document.write('<span id="loadingText">Loading...</span>');
+                document.write('<div id="loadingProgress" class="success progress">');
+                document.write('<div id="loadingBar" class="progress-meter" style="width: 10%;"></div>');
+                document.write('</div>');
+
+                document.write('<h2>Search Results</h2>');
+                document.write('<p id="resultSection"></p>');
+                document.write('<a class="close-button" data-close>&#215;');
+                document.write('</div>');
+
+                document.write("<script src='js/vendor/foundation.min.js'><\/script>");
+                document.write("<script src='js/vendor/what-input.js'><\/script>");
+
+
+                // This has to be last in the scripts
+                document.write('<script>$(document).foundation();<\/script>');
+
+                document.write("</body>");
+
+            });
+        });
+    </script>
+</head>
+<body>
+<a class='button' href="index.html">Home</a>
+<a class='button' href="ms.html">Manuscript</a>
+<center>
+    <h1>Poems by index:</h1>
+    <table>
+        <tr><td><input type= "button" id="35-hoc.xml" class="poems" value="Dialog with a Friend" /></td></tr>
+        <tr><td><input type= "button" id="37-hoc.xml" class="poems" value="Lerne to Dye." /></td></tr>
+        <tr><td><input type= "button" id="39-hoc.xml" class="poems" value="Hoccleve's Dedication to Lady Westmoreland" /></td></tr>
+    </table>
+</center>
+</body>
+</html>

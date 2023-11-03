@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Request JSON Test</title>
+</head>
+<body>
+<h4 id="dem"></h4>
+<p id="demo"></p>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+    var c;
+    var partsOfSpeech = "";
+    var text="";
+    var line=0;
+    var sentence="";
+    var found = false;
+    var dataString;
+    var returnArr = [];
+    var i = 0;
+    $.getJSON('JSON/FixedCondensed.json', function (data) {
+//        alert("success");
+        c = data;
+        for (var j = 0; j < c.container.poem[i].lg.length; j++) {
+            for (var k = 0; k < c.container.poem[i].lg[j].l.length; k++) {
+                sentence = "";
+                line++;
+                for (var l = 0; l < c.container.poem[i].lg[j].l[k].seg.length; l++) {
+                    var word = c.container.poem[i].lg[j].l[k].seg[l];
+                    sentence += word.__text + " ";
+//                         console.log(sentence);
+                    if (word.__text == "womman") {
+                        found = true;
+                        theword = '"' + word.__text + '"';
+                        partsofspeech = word._pos;
+                        root = word._me_root;
+                        console.log("The parts of speech is :" + partsofspeech);
+                        document.getElementById("dem").innerHTML = "Search results for me_root= "  +root + " within poem:" + " " ;
+                        //returnArr[word.__text].push([[line, partsofspeech, ""]]);
+                        dataString = theword + "," + " " + "line" + " " + line + "," + " " + partsofspeech + "<br />";
+                        document.getElementById("demo").innerHTML +=  theword + "," + " " + "line" + " " + line + "," + " " + partsofspeech + "<br />";
+                    }
+                    ;
+                }
+                ;
+                if (found == true) {
+//                        console.log(sentence);
+                    document.getElementById("demo").innerHTML += sentence +"<br>" + "<br>";
+                    dataString += sentence + "<br>" + "<br>";
+                    returnArr.push(dataString);
+                }
+                found = false;
+            }
+            ;
+        }
+        ;
+        // for(var i=0;i<returnArr.length;i++)
+        //     document.getElementById("demo").innerHTML += returnArr[i];
+        return returnArr;
+    });
+</script>
+
+</body>
+</html>

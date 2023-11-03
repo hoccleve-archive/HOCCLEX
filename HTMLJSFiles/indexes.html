@@ -1,0 +1,362 @@
+﻿<!--todo: Clean the code, document with comments-->
+
+<!--
+A lot of the code we were given had this pretty functional. We're slowly going through updating
+variable names and flow.
+
+There may also be a way to improve on the mechanics of loading the poems - but we kept it as close
+to the original code as possible.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Document</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/loadxmldoc.js" type="text/javascript"></script> <!-- Linking external javascript file for loading the contents from the XML file -->
+
+	<link rel="stylesheet" href="css/app.css">
+
+	<style>
+		input{
+			width: 400px;
+		}
+	</style>
+	<script>
+		function showRawData() {
+            var xmlString = 'Sample Poem Type 1';
+            document.getElementById("xmlRawData").innerText = xmlString;
+        }
+
+		function showRawData2() {
+			var xmlString = 'Sample Poem Type 2';
+            document.getElementById("xmlRawData").innerText = xmlString;
+		}
+	</script>
+</head>
+
+<body>
+<a class="button" href="index.html">Home</a>
+<center>
+	<h1>Poems by Title</h1>
+	<table>
+		<tr>
+			<td>
+				<button onclick="showRawData()">The Compleynte of the Virgin before the Cross</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Address to Sir John Oldcastle</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">La Male Reglee</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Balade to King Henry V</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Two Balades to Henry V and the Knights of the Garter [Ballad #1]</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Two Balades to Henry V and the Knights of the Garter [Ballad #2]</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Ad Beatam Virginem</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Balade, after K. Richard II's Bones . . . </button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Balade to my gracious Lord of York </button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Ad Beatam Vriginem, the 'Mother of God'</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Balade to the Duke of Bedford</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Balade to my Lord the Chancellor</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Balade and Roundel or Chanceon to Mr. Henry Somer, Subtreasurer</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Balade to King Henry V</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Balade to King Henry V, for Money</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Balade to my maister Carpenter</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Balade by the Court of Good Company</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Balade to the Virgin and Christ</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">The Letter of Cupid to Lovers, his Subjects</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Regiment of Princes</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Verba compilatoris ad librum [envoi at end of regiment]</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Inoucacio ad patrem</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">ad filium honor et gloria</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">ad spiritum sanctum</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Ad Beatam Virginem</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">item de beata virgine (prologus)</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">item de beata virgine (fabula)</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">the story of the monk who clad the virgin</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Three Roundels - Hoccleve's appeal to Lady Money</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Three Roundels - Lady Money's scornful answer</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Three Roundels - Hoccleve's Humorous praise of his lady</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">epilogue to three roundels</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Lerne to Dye.</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">Thomas Hoccleve's Complaint</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Dialog with a Friend</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">POEM 36</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Lerne to Dye.</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData2()">POEM 38</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="showRawData()">Hoccleve's Dedication to Lady Westmoreland</button>
+			</td>
+			<td>
+				<pre id="xmlRawData"></pre>
+			</td>
+		</tr>
+
+
+
+
+		<tr><td><input type= "button" id="39-hoc.xml" class="poems" value="Hoccleve's Dedication to Lady Westmoreland" /></td></tr>
+	</table>
+</center>
+</body>
+</html>
